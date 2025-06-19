@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Signup Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f9ff;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .signup-container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(100, 100, 200, 0.1);
+    max-width: 450px;
+    width: 100%;
+  }
+  .signup-container h2 {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+    color: #0a0a2a;
+  }
+  .signup-container p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #444;
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #222;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1.5px solid #ddd;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  input[type="tel"]:focus {
+    border-color: #5a4de0;
+    outline: none;
+  }
+
+  .password-wrapper {
+    position: relative;
+  }
+  .toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    user-select: none;
+  }
+
+  .otp-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .otp-container input {
+    width: 40px;
+    height: 45px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1.5px solid #ddd;
+  }
+  .otp-container input:focus {
+    border-color: #5a4de0;
+    outline: none;
+  }
+
+  button.signup-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+    background-color: #5a4de0;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button.signup-btn:hover {
+    background-color: #443cba;
+  }
+</style>
+</head>
+<body>
+
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <p>Already have an account? <a href="login.html">Log In</a></p>
+
+  <form>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" placeholder="Enter your first name" required />
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" placeholder="Enter your last name" required />
+
+    <label for="surname">Surname</label>
+    <input type="text" id="surname" placeholder="Enter your surname" />
+
+    <label for="email">E-mail</label>
+    <input type="email" id="email" placeholder="Enter your email address" required />
+
+    <label for="password">Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Enter password" required />
+      <span class="toggle-password" onclick="togglePassword('password', this)">Show</span>
+    </div>
+
+    <label for="repassword">Rewrite Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="repassword" placeholder="Rewrite password" required />
+      <span class="toggle-password" onclick="togglePassword('repassword', this)">Show</span>
+    </div>
+
+    <label for="mobile">Mobile Number</label>
+    <input type="tel" id="mobile" placeholder="Enter your mobile number" required />
+
+    <label>OTP</label>
+    <div class="otp-container">
+      <input type="text" maxlength="1" oninput="moveNext(this, event)" />
+      <input type="text" maxlength="1" oninput="moveNext(this, event)" />
+      <input type="text" maxlength="1" oninput="moveNext(this, event)" />
+      <input type="text" maxlength="1" oninput="moveNext(this, event)" />
+      <input type="text" maxlength="1" oninput="moveNext(this, event)" />
+      <input type="text" maxlength="1" oninput="moveNext(this, event)" />
+    </div>
+
+    <button type="submit" class="signup-btn">Sign Up</button>
+  </form>
+</div>
+
+<script>
+  function togglePassword(id, el) {
+    const input = document.getElementById(id);
+    if (input.type === "password") {
+      input.type = "text";
+      el.textContent = "Hide";
+    } else {
+      input.type = "password";
+      el.textContent = "Show";
+    }
+  }
+
+  // Move to next input on input for OTP fields
+  function moveNext(current, event) {
+    if (current.value.length >= current.maxLength) {
+      let next = current.nextElementSibling;
+      if (next && next.tagName === "INPUT") {
+        next.focus();
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
